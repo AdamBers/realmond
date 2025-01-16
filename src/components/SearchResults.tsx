@@ -1,4 +1,3 @@
-// components/SearchResults.tsx
 import React from "react";
 import { ISearchResult } from "../types";
 

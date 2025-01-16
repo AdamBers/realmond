@@ -1,4 +1,3 @@
-// components/SearchBar.tsx
 import React, { useState } from "react";
 
 interface SearchBarProps {
@@ -15,7 +14,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (query.trim()) {
-      onSearch(query); // Вызываем onSearch с текстом запроса
+      onSearch(query);
     }
   };
 
