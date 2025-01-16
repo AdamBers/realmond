@@ -1,10 +1,10 @@
 #root {
-  margin: 0 auto;
+  margin: 0;
 }
 
 .main-container {
-  max-width: 600px;
-  margin: 0 auto;
+  width: 768px;
+  margin: 0;
   padding: 20px;
   font-family: Arial, sans-serif;
 }
@@ -49,10 +49,14 @@ h1 {
 }
 
 .result-item {
-  margin-bottom: 10px;
   border: 1px solid rgb(220, 220, 220);
   border-radius: 20px;
   padding: 20px;
+  width: 300px;
+  height: 250px;
+  display: inline-block;
+  margin: 20px;
+  overflow: hidden;
 }
 
 .result-item a {
@@ -61,4 +65,39 @@ h1 {
 
 .result-item a:hover {
   text-decoration: underline;
+}
+
+.category-selector {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.category-button {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.category-button:hover {
+  background-color: #e0e0e0;
+}
+
+.category-button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+@media (max-width: 767px) {
+  .main-container {
+    width: 100%;
+  }
+  .category-selector {
+    display: block;
+  }
+  .result-item {
+    width: calc(100% - 80px);
+  }
 }

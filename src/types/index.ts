@@ -3,4 +3,6 @@ export interface ISearchResult {
   artistName: string;
   collectionName: string;
   trackViewUrl: string;
+  collectionId: number;
+  artworkUrl100?: string;
 }

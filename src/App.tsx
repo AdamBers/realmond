@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { fetchSearchResults } from "./api/search";
 import { ISearchResult } from "./types";
 import { SearchBar } from "./components/SearchBar";
 import { SearchResults } from "./components/SearchResults";
+import { CategorySelector } from "./components/CategorySelector";
 import "./App.css";
 
 type MediaType = "movie" | "music" | "podcast" | "tvShow" | "ebook" | "software" | "all";
@@ -11,36 +12,36 @@ function App() {
   const [results, setResults] = useState<ISearchResult[]>([]);
   const [loading, setLoading] = useState(false);
   const [media, setMedia] = useState<MediaType>("all");
-
-  console.log(results);
+  const [query, setQuery] = useState<string>("");
 
   const handleSearch = async (query: string) => {
+    if (query.trim() === "") return;
     setLoading(true);
     const results = await fetchSearchResults(query, media);
     setResults(results);
     setLoading(false);
   };
 
-  const handleMediaChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setMedia(e.target.value as MediaType);
+  const handleMediaChange = (media: MediaType) => {
+    setMedia(media);
   };
+
+  const handleQueryChange = (query: string) => {
+    setQuery(query);
+  };
+
+  useEffect(() => {
+    if (query) {
+      handleSearch(query);
+    }
+  }, [media, query]);
 
   return (
     <>
       <div className="main-container">
         <h1>Media Search</h1>
-        <div>
-          <select value={media} onChange={handleMediaChange} className="select">
-            <option value="all">All</option>
-            <option value="movie">Movies</option>
-            <option value="music">Music</option>
-            <option value="podcast">Podcasts</option>
-            <option value="tvShow">TV Shows</option>
-            <option value="ebook">eBooks</option>
-            <option value="software">Software</option>
-          </select>
-        </div>
-        <SearchBar onSearch={handleSearch} />
+        <SearchBar onSearch={handleQueryChange} />
+        <CategorySelector media={media} onMediaChange={handleMediaChange} />
         {loading ? <p>Loading...</p> : <SearchResults results={results} />}
       </div>
     </>
