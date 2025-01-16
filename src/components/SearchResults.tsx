@@ -7,19 +7,14 @@ interface SearchResultsProps {
 }
 
 export const SearchResults: React.FC<SearchResultsProps> = ({ results, loading }) => {
-  // if (loading)
-  //   return (
-
-  //   );
-
   return (
     <div className="results">
-      {results.length === 0 ? (
-        <p>No results found.</p>
-      ) : loading ? (
-        <div>
-          <p>Loading</p>
+      {loading ? (
+        <div className="loading-container">
+          <p>Loading...</p>
         </div>
+      ) : results.length === 0 ? (
+        <p>No results found.</p>
       ) : (
         <ul>
           {results.map((result) => (
