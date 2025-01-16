@@ -12,7 +12,7 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
         <p>No results found.</p>
       ) : (
         <ul>
-          {results.map((result, index) => (
+          {results.map((result) => (
             <li key={result.collectionId + result.artistName + result.trackName} className="result-item">
               {result.artworkUrl100 && (
                 <img src={result.artworkUrl100} alt={result.trackName} className="result-image" />
