@@ -42,7 +42,7 @@ function App() {
         <h1>Media Search</h1>
         <SearchBar onSearch={handleQueryChange} />
         <CategorySelector media={media} onMediaChange={handleMediaChange} />
-        {loading ? <p>Loading...</p> : <SearchResults results={results} />}
+         <SearchResults results={results} loading={loading} />
       </div>
     </>
   );

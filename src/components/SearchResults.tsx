@@ -3,13 +3,23 @@ import { ISearchResult } from "../types";
 
 interface SearchResultsProps {
   results: ISearchResult[];
+  loading: boolean;
 }
 
-export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
+export const SearchResults: React.FC<SearchResultsProps> = ({ results, loading }) => {
+  // if (loading)
+  //   return (
+
+  //   );
+
   return (
     <div className="results">
       {results.length === 0 ? (
         <p>No results found.</p>
+      ) : loading ? (
+        <div>
+          <p>Loading</p>
+        </div>
       ) : (
         <ul>
           {results.map((result) => (
